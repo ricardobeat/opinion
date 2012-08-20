@@ -1,0 +1,19 @@
+{
+  "name": "opinion.info",
+  "subdomain": "opinion",
+  "domains": [
+    "thatsjustlikeyouropinion.info",
+    "www.thatsjustlikeyouropinion.info"
+  ],
+  "scripts": {
+    "start": "app.js"
+  },
+  "version": "0.2.0-6",
+  "engines": {
+    "node": "0.8.x"
+  },
+  "dependencies": {
+    "redis": "0.7.x",
+    "grasshopper": "0.5.x"
+  }
+}

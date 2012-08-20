@@ -1,0 +1,90 @@
+<html>
+<head>
+    <title>thatsjustlikeyouropinion: <%= opinion %></title>
+    <style>
+    * { margin:0; padding: 0; }
+    html, body { overflow:hidden; }
+    #pill {
+        width: 300px;
+        height: 28px;
+        padding: 3px;
+        font-family: sans-serif;
+    }
+    #pill li {
+        float: left;
+        min-width: 61px;
+        max-width: 125px;
+        height: 24px;
+        line-height: 26px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 400;
+        color: #555;
+        cursor: pointer;
+        border: 1px solid #eee;
+    }
+    #pill strong {
+        background: #F7F7F7;
+        float: left;
+        height: 24px;
+        width: 18px;
+    }
+    #pill span {
+        margin-left: 2px;
+        padding: 4px 8px 4px 4px;
+    }
+    #pill li:hover,
+    #pill li:hover span {
+        color: #fff;
+    }
+    #pill li:hover strong {
+        background: rgba(0, 0, 0, 0.07);
+        color: #fff;
+    }
+    #pill .yes {
+        background-color: #fafafa;
+        margin-right: 4px;
+    }
+    #pill .yes span {
+        color: #88e;
+    }
+    #pill .yes:hover {
+        background: #aaf;
+        border-color: #aaf;
+    }
+    #pill .no {
+        background-color: #fcfcfc;
+    }
+    #pill .no span {
+        color: #d66;
+    }
+    #pill .no:hover {
+        background: #f88;
+        border-color: #f88;
+    }
+    </style>
+</head>
+<body>
+    <ul id="pill">
+        <li class="yes" href="#"><strong><%= yes_count %></strong> <span><%= yes %></span></li>
+        <li class="no" href="#"><strong><%= no_count %></strong> <span><%= no %></span></li>
+    </ul>
+    <script>
+    var k = 'v_<%= opinion %>'
+      , s = (window.localStorage || {})
+      , v = s[k]
+    function vote(what){
+        return function(){
+            if (v) return;
+            (s[k] = v = new Image).src = '//'+location.host+'/on/<%= opinion %>/'+what
+            try {
+                var el = this.getElementsByTagName('strong')[0]
+                el.innerHTML = +el.innerHTML + 1
+            } catch (e) { window.location.reload() }
+        }
+    }
+    document.getElementsByClassName('yes')[0].onclick = vote('yes')
+    document.getElementsByClassName('no')[0].onclick = vote('no')
+    </script>
+</body>
+</html>
